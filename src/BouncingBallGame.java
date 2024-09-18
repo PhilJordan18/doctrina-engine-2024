@@ -1,6 +1,7 @@
 import java.awt.*;
 
 public final class BouncingBallGame extends Game {
+
     private int score;
     private Ball ball;
 
@@ -10,7 +11,7 @@ public final class BouncingBallGame extends Game {
     }
 
     @Override
-    public void update() {
+    protected void update() {
         ball.update();
         if (ball.hasTouched()) {
             score += 10;
@@ -18,10 +19,9 @@ public final class BouncingBallGame extends Game {
     }
 
     @Override
-    public void drawOnBuffer(Graphics2D bufferEngine) {
-        ball.draw(bufferEngine);
-        bufferEngine.setPaint(Color.WHITE);
-        bufferEngine.drawString("Score: " + score, 10, 20);
+    protected void draw(Canvas canvas) {
+        ball.draw(canvas);
+        canvas.drawString("Score: " + score, 10, 10, Color.WHITE);
     }
 
 }

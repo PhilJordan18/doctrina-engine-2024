@@ -1,17 +1,15 @@
-import java.awt.*;
-
 public abstract class Game {
-    private static final int SLEEP = 25;
     private boolean playing = true;
-    private long before;
     private RenderingEngine renderingEngine;
+    private GameTime gameTime;
 
     protected abstract void initialize();
     protected abstract void update();
-    protected abstract void drawOnBuffer(Graphics2D bufferEngine);
+    protected abstract void draw(Canvas canvas);
 
     public Game() {
         renderingEngine = new RenderingEngine();
+
     }
 
     public final void start() {
@@ -21,34 +19,12 @@ public abstract class Game {
 
     private void run() {
         renderingEngine.start();
-        updateSyncTime();
+        gameTime = new GameTime();
         while (playing) {
             update();
-            drawOnBuffer(renderingEngine.builtBuffer());
+            draw(renderingEngine.buildCanvas());
             renderingEngine.drawBufferOnScreen();
-            sleep();
+            gameTime.sleep();
         }
-    }
-
-    private void sleep() {
-        try {
-            Thread.sleep(getSleepClass());
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        updateSyncTime();
-    }
-
-    private long getSleepClass() {
-        long sleep = SLEEP - (System.currentTimeMillis() - before);
-        if (sleep < 4) {
-            sleep = 4;
-        }
-        return sleep;
-    }
-
-    private void updateSyncTime() {
-        before = System.currentTimeMillis();
     }
 }
