@@ -1,3 +1,8 @@
+package Doctrina;
+
+import java.awt.*;
+import java.awt.event.KeyListener;
+
 public abstract class Game {
     private boolean playing = true;
     private RenderingEngine renderingEngine;
@@ -12,6 +17,10 @@ public abstract class Game {
 
     }
 
+    public void addKeyListener(KeyListener keyListener) {
+        renderingEngine.addKeyListener(keyListener);
+    }
+
     public final void start() {
         initialize();
         run();
@@ -24,7 +33,7 @@ public abstract class Game {
             update();
             draw(renderingEngine.buildCanvas());
             renderingEngine.drawBufferOnScreen();
-            gameTime.sleep();
+            gameTime.synchronize();
         }
     }
 }

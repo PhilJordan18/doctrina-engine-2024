@@ -1,4 +1,7 @@
+package BouncingBall;
+
 import java.awt.*;
+import Doctrina.Canvas;
 import java.util.Random;
 
 public class Ball {
