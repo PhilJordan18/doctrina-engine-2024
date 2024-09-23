@@ -22,7 +22,7 @@ public class Ball {
     }
 
     public Ball(int radius) {
-        this(radius, 5);
+        this(radius, DEFAULT_SPEED);
     }
 
     public boolean hasTouched(){return hasTouchVertical() || hasTouchHorizontal();}
