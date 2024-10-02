@@ -33,7 +33,7 @@ public class FootprintGame extends Game {
 
     @Override
     protected void draw(Canvas canvas) {
-        canvas.drawRectangle(0,0, 5, 5, Color.blue);
+        canvas.drawRectangle(0,0, 5, 5, Color.BLUE);
 
         for (Footprint footprint : footprints) {
             footprint.draw(canvas);
