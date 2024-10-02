@@ -36,6 +36,13 @@ public class MovementController extends Controller {
         return null;
     }
 
+    public void useWasdKeys() {
+        setUpKey(KeyEvent.VK_W);
+        setLeftKey(KeyEvent.VK_A);
+        setDownKey(KeyEvent.VK_X);
+        setRightKey(KeyEvent.VK_D);
+    }
+
     public boolean isUpPressed() {
         return isKeyPressed(upKey);
     }
