@@ -29,6 +29,8 @@ public class Tank extends ControllableEntity {
     @Override
     public void draw(Canvas canvas) {
         canvas.drawRectangle(this, Color.GREEN);
+        int coolDownWidth = (cooldown * width) / 40;
+        canvas.drawRectangle(x, y -5, coolDownWidth, 2, Color.RED);
     }
 
     public Missile fire() {
