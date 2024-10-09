@@ -8,7 +8,7 @@ import java.awt.*;
 
 
 public class Tank extends ControllableEntity {
-
+    private int cooldown = 0;
 
     public Tank(MovementController controller) {
         super(controller);
@@ -20,10 +20,23 @@ public class Tank extends ControllableEntity {
     @Override
     public void update() {
         moveWithController();
+
+        if (!canFire()) {
+            cooldown--;
+        }
     }
 
     @Override
     public void draw(Canvas canvas) {
         canvas.drawRectangle(this, Color.GREEN);
+    }
+
+    public Missile fire() {
+        cooldown = 40;
+        return new Missile(this);
+    }
+
+    public boolean canFire() {
+        return cooldown == 0;
     }
 }
